@@ -9,3 +9,4 @@ summary(survey$age)
 
 survey$smoke_freq <- factor(survey$smoke_freq, ordered = TRUE, levels = c("Never", "Occas", "Regul", "Heavy"))
 plot(survey$smoke_freq)
+

@@ -1,6 +1,9 @@
 library("MASS")
 library(ggplot2)
+
 library(tidyr)
+install.packages("dplyr")
+library(dplyr)
 data <- data.frame(survey)
 
 # Dataframe erstellen, die die Häufigkeit jedes Rauchverhaltens für Männer und Frauen zählt

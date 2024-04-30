@@ -14,3 +14,4 @@ ggplot(table, aes(x = sex, y = height)) +
   geom_boxplot() +
   labs(x = "Geschlecht", y = "Größe") +
   theme_minimal()
+#help

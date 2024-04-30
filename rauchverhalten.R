@@ -1,13 +1,13 @@
 install.packages("dplyr")
 
-library("MASS")
+library(MASS)
 library(ggplot2)
 library(tidyr)
 library(dplyr)
 data <- data.frame(survey)
 
 # Dataframe erstellen, die die Häufigkeit jedes Rauchverhaltens für Männer und Frauen zählt
-smoke_counts <- as.data.frame.matrix(table(data$Sex, data$Smoke))
+smoke_counts <- as.data.frame.matrix(table(data$sex, data$smoke_freq))
 
 # Hinzufügen einer Spalte für das Geschlecht & Löschen der Zeilennamen
 smoke_counts$sex <- rownames(smoke_counts)
@@ -31,6 +31,7 @@ ggplot(percentages, aes(x = smoke_type, y = count, fill = sex)) +
   geom_text(aes(label = sprintf("%.2f%%", percentage), y = count), 
             position = position_dodge(width = 0.9), vjust = -0.5, size = 3) +
   theme_minimal() +
-  ggtitle("Rauchgewohnheiten nach Geschlecht aufgeteilt") +
   labs(x = "Rauchertyp", y = "Anzahl", fill = "Geschlecht") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+  scale_fill_manual(values = c("Männlich" = "dodgerblue1", "Weiblich" = "cyan3"))
+

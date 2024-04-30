@@ -7,6 +7,6 @@ summary(survey$age)
 
 # Erstelle das Streudiagramm und färbe alle Punkte blau ein
 ggplot(survey, aes(x = age, y = pulse)) +
-  geom_point(color = "cyan3") +
+  geom_point(color = "dodgerblue") +
   labs(x = "Alter", y = "Puls") +
   theme_minimal()

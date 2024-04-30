@@ -6,7 +6,7 @@ colnames(survey) <- c("sex", "wr_span", "nwr_span", "wr_hand", "fold_top", "puls
 summary(survey$age)
 
 #N.A. rausfiltern
-table<- filter(survey, sex == "Male" | sex == "Female")
+table<- filter(survey, survey$sex == "Male" | survey$sex == "Female")
 
 
 # Erstelle das Streudiagramm

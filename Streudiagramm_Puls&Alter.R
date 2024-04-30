@@ -6,7 +6,7 @@ colnames(survey) <- c("sex", "wr_span", "nwr_span", "wr_hand", "fold_top", "puls
 summary(survey$age)
 
 # Erstelle das Streudiagramm
-ggplot(table, aes(x = age, y = pulse)) +
+ggplot(survey, aes(x = age, y = pulse)) +
   geom_point() +
   labs(x = "Alter", y = "Puls") +
   theme_minimal()

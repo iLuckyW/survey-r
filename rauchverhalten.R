@@ -1,5 +1,3 @@
-install.packages("dplyr")
-
 library(MASS)
 library(ggplot2)
 library(tidyr)
@@ -34,4 +32,3 @@ ggplot(percentages, aes(x = smoke_type, y = count, fill = sex)) +
   labs(x = "Rauchertyp", y = "Anzahl", fill = "Geschlecht") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
   scale_fill_manual(values = c("Männlich" = "dodgerblue1", "Weiblich" = "cyan3"))
-

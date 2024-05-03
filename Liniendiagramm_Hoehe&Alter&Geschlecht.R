@@ -15,12 +15,12 @@ gender_counts <- filtered_data %>%
   group_by(age, height, sex) %>%
   summarise(count = n()) %>%
   group_by(age, height) %>%
-  mutate(color = ifelse(sum(count[sex == "Male"]) > sum(count[sex == "Female"]), "blue", "red"))
+  mutate(color = ifelse(sum(count[sex == "Male"]) > sum(count[sex == "Female"]), "blue3", "cyan3"))
 
 # Erstelle das Streudiagramm
 ggplot(gender_counts, aes(x = age, y = height, color = color)) +
   geom_point() +
-  labs(x = "Age", y = "Height", color = "Sex") +
+  labs(x = "Alter", y = "Größe", color = "Sex") +
   scale_color_identity() +
   theme_minimal()
 

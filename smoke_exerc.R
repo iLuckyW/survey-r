@@ -10,6 +10,6 @@ data <- data %>%
 
 barplot(table(data$exercise_freq, data$smoke_freq), beside = TRUE, legend.text = TRUE, 
         col = c("blue3", "dodgerblue1", "cyan3"),
-        main = "Sportlichkeit vs LiRauchverhalten",
+        main = "Sportlichkeit vs Rauchverhalten",
         xlab = "Rauchgewohnheit", ylab = "Sportlichkeit")
 

@@ -24,7 +24,7 @@ ggplot(clap_summary, aes(x = wr_hand, y = percentage, fill = clap_top)) +
   geom_bar(stat = "identity", position = "dodge", width = 0.7) +
   geom_text(aes(label = paste0(round(percentage, 1), "%")),
             position = position_dodge(width = 0.7), vjust = -0.5, size = 3) +
-  labs(title = "Verhalten beim Klatschen",
+  labs(title = "",
        x = "Schreibhand",
        y = "Prozent",
        fill = "Klatschverhalten") +

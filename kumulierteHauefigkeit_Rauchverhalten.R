@@ -1,26 +1,22 @@
-# Lade den Datensatz survey
-data(survey)
-View(survey)
+library(ggplot)
+library(MASS)
 
+# Spalten umbenennen
 colnames(survey) <- c("sex", "wr_span", "nwr_span", "wr_hand", "fold_top", "pulse", "clap_top", "exercise_freq", "smoke_freq", "height", "unit", "age")
+survey$smoke_freq <- factor(survey$smoke_freq, levels = c("Heavy", "Regul", "Occas", "Never"),
+                            labels = c("Sehr viel", "Regelmäßig", "Gelegentlich", "Niemals"))
 
+# Kumulative Summe berechnen
+cumulative_sum <- cumsum(table(survey$smoke_freq))
 
-survey$smoke_freq <- factor(survey$smoke_freq, levels = c("Never", "Occas", "Regul", "Heavy"))
-levels(survey$smoke_freq) <- c("Niemals", "Gelegentlich", "Regelmäßig", "Sehr viel")
+# Dataframe mit kumulativer Summe erstellen
+cumulative_df <- data.frame(smoke_freq = names(cumulative_sum), cumsum = cumulative_sum)
 
-# Erstelle eine Tabelle der Rauchgewohnheiten und ihrer Häufigkeiten
-smoke_freq_table <- table(survey$smoke_freq)
-
-# Berechne die kumulierten Häufigkeiten
-cumulative_counts <- cumsum(smoke_freq_table)
-
-# Plotte das Balkendiagramm der kumulierten Häufigkeiten
-barplot(cumulative_counts, 
-        main = "Kumulierte Häufigkeit der Rauchgewohnheiten", 
-        xlab = "Rauchgewohnheiten", 
-        ylab = "Kumulierte Häufigkeit",
-        col = "dodgerblue",
-        ylim = c(0, max(cumulative_counts) * 1.1), # Anpassung der y-Achsenbegrenzung für eine bessere Visualisierung
-        names.arg = names(smoke_freq_table))
-
-text(x = barplot(cumulative_counts, plot = FALSE), y = cumulative_counts, labels = cumulative_counts, pos = 3, cex = 0.8, col = "black")
+# Plot erstellen
+ggplot(cumulative_df, aes(x = reorder(smoke_freq, cumsum), y = cumsum)) +
+  geom_bar(stat = "identity", fill = "dodgerblue") +
+  geom_text(aes(label = cumsum), vjust = -0.5, color = "black", size = 3) + # Add labels for absolute values
+  scale_y_continuous(labels = scales::comma) + # Add commas to y-axis labels for better readability
+  labs(x = "Rauchfrequenz",
+       y = "Kumulative Anzahl") + 
+  theme_minimal()
